@@ -2,10 +2,7 @@ package cn.hzh.ssv.view;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -195,6 +192,7 @@ public class SlidingSwitcherView extends RelativeLayout
                 mDistance = x - mDownX;
                 mLastDeltaX = x - mLastX;
                 mLastX = x;
+                //有Move就拦截
                 if (Math.abs(mDistance) > mTouchSlop)
                     return true;
                 break;
@@ -387,7 +385,7 @@ public class SlidingSwitcherView extends RelativeLayout
     /**
      * 发送一个消息，实现自动scroll功能
      */
-    private void startAutoScroll()
+    public void startAutoScroll()
     {
         postDelayed(mAutoScrollRunnable, 3000);
     }
@@ -395,7 +393,7 @@ public class SlidingSwitcherView extends RelativeLayout
     /**
      * 移除自动scroll的Runnable对象
      */
-    private void stopAutoScroll()
+    public void stopAutoScroll()
     {
         removeCallbacks(mAutoScrollRunnable);
     }
